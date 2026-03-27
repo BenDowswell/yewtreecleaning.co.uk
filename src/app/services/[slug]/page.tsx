@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { services, getServiceBySlug } from '@/domain/service/data';
+import { getServiceBySlug } from '@/domain/service/data';
+
+export const runtime = 'edge';
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
-}
-
-export async function generateStaticParams() {
-  return services.map((service) => ({
-    slug: service.slug,
-  }));
 }
 
 export async function generateMetadata({
