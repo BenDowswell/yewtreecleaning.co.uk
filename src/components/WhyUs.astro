@@ -1,0 +1,117 @@
+---
+const reasons = [
+  {
+    title: 'Local & Independent',
+    body: 'Based right here in Madeley, we’re a local business that takes pride in serving our community.',
+    paths: [
+      'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z',
+      'M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0z',
+    ],
+  },
+  {
+    title: 'Reliable & Consistent',
+    body: 'We turn up when we say we will. You can count on a thorough, consistent clean every time.',
+    paths: ['M22 11.08V12a10 10 0 11-5.93-9.14', 'M22 4L12 14.01 9 11.01'],
+  },
+  {
+    title: 'Flexible Scheduling',
+    body: 'Weekly, fortnightly, or monthly — we work around your routine. One-off cleans available too.',
+    paths: [
+      'M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z',
+      'M16 2v4',
+      'M8 2v4',
+      'M3 10h18',
+    ],
+  },
+  {
+    title: 'Your Products, Your Way',
+    body: 'You provide the products and equipment, so your home is cleaned with exactly what you prefer.',
+    paths: ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'],
+  },
+];
+---
+
+<section id="why" class="why">
+  <div class="container">
+    <h2 class="section-heading centred">Why Choose Yew Tree Cleaning?</h2>
+    <div class="grid">
+      {
+        reasons.map((reason) => (
+          <div class="reason">
+            <div class="badge">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                {reason.paths.map((d) => <path d={d} />)}
+              </svg>
+            </div>
+            <h3>{reason.title}</h3>
+            <p>{reason.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .why {
+    background: var(--surface-tint);
+  }
+
+  .centred {
+    text-align: center;
+  }
+
+  .grid {
+    margin-top: var(--space-12);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-8);
+  }
+
+  .reason {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .badge {
+    height: 56px;
+    width: 56px;
+    border-radius: var(--radius-full);
+    background: var(--brand-green-100);
+    color: var(--brand-green-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  h3 {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-heading);
+  }
+
+  p {
+    margin: var(--space-2) 0 0;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-10) var(--space-8);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+      margin-top: var(--space-10);
+    }
+  }
+</style>

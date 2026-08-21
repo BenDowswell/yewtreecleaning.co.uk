@@ -1,0 +1,111 @@
+/* Design system tokens, imported in the order the design system declares them
+   in its own styles.css. Copied verbatim from Claude Design so they stay
+   diffable against the source design system. */
+@import './tokens/fonts.css';
+@import './tokens/colors.css';
+@import './tokens/typography.css';
+@import './tokens/spacing.css';
+@import './tokens/radii.css';
+@import './tokens/shadows.css';
+@import './tokens/semantic.css';
+@import './tokens/base.css';
+
+/* The design file's own <helmet> reset. This deliberately overrides
+   tokens/base.css: the page background is white, not --surface-page. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--gray-800);
+  font-family: var(--font-sans);
+}
+
+a {
+  text-decoration: none;
+}
+
+/* Anchor navigation. scroll-margin-top clears the sticky header so a jumped-to
+   heading is not hidden underneath it. */
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* A single visible focus indicator for every interactive element. The design
+   does not specify one; --ring-focus is the design system's own token. */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+  border-radius: var(--radius-md);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: calc(var(--space-4) * -10);
+  z-index: 100;
+  background: var(--white);
+  color: var(--brand-green-700);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-control);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  box-shadow: var(--shadow-lg);
+  transition: top var(--duration-base) var(--ease-default);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+}
+
+/* Shared section container. The design uses max-width:80rem with 32px gutters
+   at 1280px; the gutters tighten on small screens. */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-8);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--space-12) var(--space-5);
+  }
+}
+
+.section-heading {
+  margin: 0;
+  font-size: var(--text-4xl);
+  line-height: var(--text-4xl-lh);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-heading);
+}
+
+@media (max-width: 640px) {
+  .section-heading {
+    font-size: var(--text-3xl);
+    line-height: var(--text-3xl-lh);
+  }
+}

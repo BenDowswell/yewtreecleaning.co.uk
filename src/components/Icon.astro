@@ -1,0 +1,26 @@
+---
+/** Renders one of the design's outline glyphs from its path data. */
+interface Props {
+  paths: string[];
+  size?: number;
+  strokeWidth?: number;
+  class?: string;
+}
+
+const { paths, size = 28, strokeWidth = 1.5, class: className } = Astro.props;
+---
+
+<svg
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="none"
+  stroke="currentColor"
+  stroke-width={strokeWidth}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  class={className}
+>
+  {paths.map((d) => <path d={d} />)}
+</svg>

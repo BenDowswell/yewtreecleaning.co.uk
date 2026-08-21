@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import Hero from '../components/Hero.astro';
+import WhyUs from '../components/WhyUs.astro';
+import Services from '../components/Services.astro';
+import Areas from '../components/Areas.astro';
+import Faq from '../components/Faq.astro';
+import ContactCta from '../components/ContactCta.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsAppFab from '../components/WhatsAppFab.astro';
+
+const title = 'Yew Tree Cleaning | Domestic Cleaning in Madeley';
+const description =
+  'Reliable, friendly domestic cleaning for homes across Madeley and around 10 miles of the surrounding area. Regular cleans, deep cleans, end of tenancy and oven cleaning from £15 per hour.';
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader />
+  <main>
+    <Hero />
+    <WhyUs />
+    <Services />
+    <Areas />
+    <Faq />
+    <ContactCta />
+  </main>
+  <SiteFooter />
+  <WhatsAppFab />
+</BaseLayout>

@@ -1,0 +1,27 @@
+:root{
+/* text */
+--text-heading:var(--gray-900);--text-body:var(--gray-600);--text-strong:var(--gray-800);--text-label:var(--gray-700);--text-muted:var(--gray-500);--text-subtle:var(--gray-400);--text-on-brand:var(--white);
+--text-link:var(--brand-green-600);--text-link-hover:var(--brand-green-700);
+/* surfaces */
+--surface-page:var(--gray-50);--surface-card:var(--white);--surface-raised:var(--white);--surface-tint:var(--brand-green-50);--surface-footer:var(--gray-200);--surface-sidebar:var(--brand-green-900);--surface-inverse:var(--brand-green-400);
+/* borders */
+--border-subtle:var(--gray-100);--border-default:var(--gray-200);--border-strong:var(--gray-300);--border-brand:var(--brand-green-400);--border-tint:var(--brand-green-200);
+/* actions */
+--action-primary:var(--brand-green-400);--action-primary-hover:var(--brand-green-500);--action-primary-active:var(--brand-green-600);
+--action-secondary:var(--brand-blue-400);--action-secondary-hover:var(--brand-blue-500);--action-secondary-active:var(--brand-blue-600);
+--action-ghost-hover:var(--brand-green-50);--action-ghost-active:var(--brand-green-100);
+--focus-ring:var(--brand-green-400);
+/* status */
+--status-pending-bg:var(--yellow-100);--status-pending-fg:var(--yellow-800);
+--status-confirmed-bg:var(--brand-green-100);--status-confirmed-fg:var(--brand-green-800);
+--status-completed-bg:var(--brand-blue-100);--status-completed-fg:var(--brand-blue-800);
+--status-rejected-bg:var(--red-100);--status-rejected-fg:var(--red-700);
+--status-cancelled-bg:var(--gray-100);--status-cancelled-fg:var(--gray-700);
+/* notices */
+--notice-info-bg:var(--brand-blue-50);--notice-info-border:var(--brand-blue-200);--notice-info-fg:var(--brand-blue-800);
+--notice-warn-bg:var(--amber-50);--notice-warn-border:var(--amber-200);--notice-warn-fg:var(--amber-800);
+--notice-success-bg:var(--brand-green-50);--notice-success-border:var(--brand-green-200);--notice-success-fg:var(--brand-green-800);
+--notice-error-bg:var(--red-50);--notice-error-border:var(--red-200);--notice-error-fg:var(--red-700);
+/* error field */
+--field-error-border:var(--red-400);--field-error-text:var(--red-500)
+}

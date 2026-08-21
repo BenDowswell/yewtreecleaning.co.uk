@@ -1,146 +1,71 @@
 # Yew Tree Cleaning
 
-Website for Yew Tree Cleaning — a domestic cleaning service based in Madeley, CW3 9DT, covering approximately 10–15 miles of the surrounding area.
+Website for Yew Tree Cleaning — a domestic cleaning service based in Madeley, CW3 9DT, covering approximately 10 miles of the surrounding area.
 
-## Tech Stack
+A single-scroll marketing page built from the approved Claude Design file. There is no application behind it: no forms, no accounts, no database. Customers get in touch by phone, email or WhatsApp.
 
-- **Framework:** Next.js 16 (App Router) with TypeScript
-- **Styling:** Tailwind CSS v4
-- **Forms:** React Hook Form + Zod validation
-- **Maps:** Leaflet with OpenStreetMap
-- **Data:** Mock in-memory backend (designed for easy database swap later)
+## Tech stack
 
-## Getting Started
+- **Framework:** [Astro 7](https://astro.build) — fully static output, no adapter
+- **Styling:** Plain CSS using design tokens copied from the Claude Design system
+- **JavaScript:** None. The page ships zero bytes of JS; the FAQ uses native `<details>`
+- **Hosting:** Cloudflare Workers static assets
 
-### Prerequisites
+## Getting started
 
-- Node.js 18.18 or later
-- npm
-
-### Install and Run Locally
+Requires Node.js 20 or later.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open <http://localhost:4321>.
 
-### Build for Production
+## Scripts
 
-```bash
-npm run build
-npm start
-```
+| Script | What it does |
+|---|---|
+| `npm run dev` | Local dev server with hot reload |
+| `npm run build` | Build the static site into `dist/` |
+| `npm run preview` | Serve the built `dist/` locally |
+| `npm run check` | Type-check `.astro` and `.ts` files |
+| `npm run deploy` | Build, then deploy to Cloudflare |
 
-## Demo Accounts
-
-| Role     | Email                        | Password      |
-|----------|------------------------------|---------------|
-| Admin    | joy@yewtreecleaning.co.uk    | admin123      |
-| Customer | sarah@example.co.uk          | customer123   |
-| Customer | james@example.co.uk          | customer123   |
-
-## Deploying to Cloudflare Pages
-
-Cloudflare Pages does not natively support Next.js server-side features (API routes, server components with dynamic data). To deploy this site you need the **`@cloudflare/next-on-pages`** adapter.
-
-### 1. Install the adapter
-
-```bash
-npm install -D @cloudflare/next-on-pages
-```
-
-### 2. Update `next.config.ts`
-
-```ts
-import type { NextConfig } from 'next';
-
-const nextConfig: NextConfig = {
-  reactStrictMode: true,
-};
-
-export default nextConfig;
-```
-
-No additional config is needed — the adapter handles the rest.
-
-### 3. Add a build script
-
-In `package.json`, add:
-
-```json
-{
-  "scripts": {
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-date=2024-01-01 --compatibility-flags=nodejs_compat"
-  }
-}
-```
-
-### 4. Deploy via Cloudflare Dashboard
-
-1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/) → **Workers & Pages** → **Create application** → **Pages** → **Connect to Git**.
-2. Select the repository `BenDowswell/yewtreecleaning.co.uk`.
-3. Set the build configuration:
-   - **Framework preset:** Next.js
-   - **Build command:** `npx @cloudflare/next-on-pages`
-   - **Build output directory:** `.vercel/output/static`
-4. Under **Environment variables**, add:
-   - `NODE_VERSION` = `18`
-   - `NEXT_PUBLIC_SITE_URL` = `https://yewtreecleaning.co.uk` (or your Cloudflare Pages URL)
-5. Click **Save and Deploy**.
-
-### 5. Custom Domain
-
-Once deployed, go to **Custom domains** in your Pages project and add `yewtreecleaning.co.uk`. Cloudflare will handle the SSL certificate automatically.
-
-### 6. Deploy via CLI (alternative)
-
-```bash
-npm run pages:build
-npx wrangler pages deploy .vercel/output/static --project-name=yewtreecleaning
-```
-
-### Notes on Cloudflare Pages
-
-- The mock in-memory database resets on each deployment and cold start. For production, you would swap it for a persistent database (e.g. Cloudflare D1, Supabase, or PlanetScale).
-- API routes run as Cloudflare Workers edge functions.
-- Static pages are served from Cloudflare's CDN automatically.
-- If you encounter build issues, check the [compatibility matrix](https://github.com/cloudflare/next-on-pages/blob/main/docs/supported.md).
-
-## Project Structure
+## Project structure
 
 ```
 src/
-├── app/                  # Pages and API routes (Next.js App Router)
-│   ├── about/            # About page
-│   ├── admin/            # Admin dashboard (protected)
-│   ├── api/              # Mock API routes
-│   ├── areas/            # Areas covered page
-│   ├── book/             # Booking wizard
-│   ├── contact/          # Contact page with forms
-│   ├── dashboard/        # Customer dashboard (protected)
-│   ├── faq/              # FAQ page
-│   ├── gallery/          # Gallery page
-│   ├── login/            # Login / register page
-│   ├── privacy/          # Privacy policy
-│   └── services/         # Services listing + detail pages
-├── components/           # Reusable UI components
-│   ├── admin/            # Admin dashboard components
-│   ├── booking/          # Booking wizard steps
-│   ├── dashboard/        # Customer dashboard components
-│   ├── forms/            # Contact, quote, login forms
-│   ├── gallery/          # Gallery grid and lightbox
-│   ├── home/             # Homepage sections
-│   ├── layout/           # Header, Footer, MobileNav, WhatsApp button
-│   ├── map/              # Interactive Leaflet map
-│   ├── seo/              # JSON-LD structured data
-│   ├── services/         # Service card component
-│   └── ui/               # Design system primitives
-├── context/              # React context providers (Auth, Booking)
-├── domain/               # Domain types, validation, utilities
-├── hooks/                # Custom React hooks
-├── lib/                  # API client, mock database, constants
-└── styles/               # Theme tokens
+  data/site.ts          All copy: business details, services, FAQ, areas
+  styles/tokens/*.css   Design tokens, copied verbatim from Claude Design
+  styles/global.css     Token imports, reset, focus and skip-link styles
+  layouts/BaseLayout    <head>, fonts, SEO meta, LocalBusiness JSON-LD
+  components/*.astro    One component per page section
+  pages/index.astro     Composes the sections
+  pages/404.astro
+public/                 favicon.svg, robots.txt
 ```
+
+### Editing content
+
+Almost every text change is a one-line edit in `src/data/site.ts` — prices, phone
+number, email, the service list, and the FAQ all live there. Section headings and
+body copy live in the matching component in `src/components/`.
+
+### Design tokens
+
+`src/styles/tokens/` is a verbatim copy of the token files from the Claude Design
+system, so they can be diffed against the source if the design changes. Component
+styles reference them as CSS custom properties (`var(--brand-green-400)`) rather
+than hardcoding values.
+
+## Deployment
+
+See [docs/Cloudflare.md](docs/Cloudflare.md).
+
+## Notes
+
+- The site deliberately ships no JavaScript. If you add an interactive component,
+  check `dist/` afterwards to confirm you meant to start shipping a bundle.
+- There is no analytics, no cookie banner, and no third-party script. The only
+  external request is the Inter webfont from Google Fonts.
