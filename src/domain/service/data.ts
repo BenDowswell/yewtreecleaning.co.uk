@@ -47,7 +47,7 @@ export const services: Service[] = [
     shortDescription:
       'Leave your rental spotless and ready for inspection.',
     longDescription:
-      'Moving out can be stressful enough without worrying about the cleaning. Our end of tenancy service ensures the property is left in immaculate condition, meeting the standards required by landlords and letting agents. We cover every area from oven cleaning to carpet freshening, helping you get your full deposit back.',
+      'Moving out can be stressful enough without worrying about the cleaning. Our end of tenancy service ensures the property is left in immaculate condition, meeting the standards required by landlords and letting agents. We cover every area from the oven to the skirting boards, helping you get your full deposit back.',
     pricePerHour: 15,
     minimumHours: 4,
     estimatedDuration: '4\u20138 hours',
@@ -76,24 +76,6 @@ export const services: Service[] = [
       'Linen changes and towel replacement',
       'Kitchen and bathroom deep clean',
       'Restocking of guest essentials on request',
-    ],
-  },
-  {
-    id: 'svc-005',
-    slug: 'carpet-cleaning',
-    name: 'Carpet Cleaning',
-    shortDescription:
-      'Refresh and revitalise your carpets with a professional deep clean.',
-    longDescription:
-      'Over time, carpets accumulate dirt, dust, and allergens that regular hoovering cannot remove. Our professional carpet cleaning service uses effective techniques to lift stains, remove odours, and restore the appearance of your carpets. Suitable for individual rooms or whole-house treatments.',
-    pricePerHour: 15,
-    minimumHours: 2,
-    estimatedDuration: '1\u20133 hours',
-    icon: 'layers',
-    features: [
-      'Deep extraction cleaning for stubborn dirt and stains',
-      'Odour removal and freshening',
-      'Suitable for all carpet types',
     ],
   },
   {

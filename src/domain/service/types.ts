@@ -17,6 +17,5 @@ export type ServiceSlug =
   | 'deep-cleaning'
   | 'end-of-tenancy-cleaning'
   | 'airbnb-holiday-let-cleaning'
-  | 'carpet-cleaning'
   | 'oven-cleaning'
   | 'after-builders-cleaning';

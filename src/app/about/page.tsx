@@ -51,8 +51,8 @@ export default function AboutPage() {
             </h2>
             <p className="mt-4 leading-relaxed text-gray-600">
               We specialise in regular domestic cleaning, but we also offer deep
-              cleans, end of tenancy cleans, Airbnb turnarounds, carpet
-              cleaning, oven cleaning, and after-builders cleans. Whether you
+              cleans, end of tenancy cleans, Airbnb turnarounds, oven cleaning,
+              and after-builders cleans. Whether you
               need us every week or just for a one-off job, we&rsquo;ll work
               around your schedule and make sure the job is done to a high
               standard.

@@ -12,7 +12,6 @@ const GALLERY_ITEMS: GalleryItem[] = [
   { label: 'Living Room', colour: 'bg-brand-blue-200 text-brand-blue-800' },
   { label: 'Bathroom', colour: 'bg-brand-purple-200 text-brand-purple-800' },
   { label: 'Oven Clean', colour: 'bg-brand-green-300 text-brand-green-900' },
-  { label: 'Carpet Clean', colour: 'bg-brand-blue-300 text-brand-blue-900' },
   { label: 'End of Tenancy', colour: 'bg-brand-purple-300 text-brand-purple-900' },
   { label: 'Deep Clean', colour: 'bg-brand-green-100 text-brand-green-700' },
   { label: 'After Builders', colour: 'bg-brand-blue-100 text-brand-blue-700' },

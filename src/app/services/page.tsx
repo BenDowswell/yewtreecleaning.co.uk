@@ -5,7 +5,7 @@ import { services } from '@/domain/service/data';
 export const metadata: Metadata = {
   title: 'Our Services',
   description:
-    'Browse our full range of domestic cleaning services including regular cleaning, deep cleaning, end of tenancy, Airbnb turnarounds, carpet cleaning, oven cleaning, and after-builders cleaning.',
+    'Browse our full range of domestic cleaning services including regular cleaning, deep cleaning, end of tenancy, Airbnb turnarounds, oven cleaning, and after-builders cleaning.',
 };
 
 const iconMap: Record<string, string> = {
