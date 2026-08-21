@@ -1,0 +1,3 @@
+body{background:var(--surface-page);color:var(--text-strong);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--text-link-hover)}

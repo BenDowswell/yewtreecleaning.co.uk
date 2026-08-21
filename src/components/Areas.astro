@@ -1,0 +1,160 @@
+---
+import { business, areasSentence } from '../data/site';
+---
+
+<section id="areas" class="areas">
+  <div class="container narrow">
+    <div class="intro">
+      <h2 class="section-heading">Areas We Cover</h2>
+      <p>
+        Based in Madeley, we clean homes within approximately 10 miles of the
+        surrounding area.
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="map" role="img" aria-label="Illustration of the service area: Madeley and approximately 10 miles around it">
+        <div class="ring outer"></div>
+        <div class="ring inner"></div>
+        <div class="pin">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="var(--brand-green-500)" aria-hidden="true">
+            <path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"></path>
+          </svg>
+          <span>Madeley</span>
+        </div>
+        <span class="scale">Approximately 10 miles</span>
+      </div>
+      <p class="towns">{areasSentence}</p>
+    </div>
+
+    <div class="callout">
+      Not sure if we cover your area? Give us a call on{' '}
+      <a href={business.phoneLink}>{business.phone}</a> — we’re always happy to check.
+    </div>
+  </div>
+</section>
+
+<style>
+  .areas {
+    background: var(--surface-tint);
+  }
+
+  .narrow {
+    max-width: 64rem;
+  }
+
+  .intro {
+    text-align: center;
+  }
+
+  .intro p {
+    margin: var(--space-4) auto 0;
+    max-width: 42rem;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  .panel {
+    margin: var(--space-10) auto 0;
+    max-width: 44rem;
+    border-radius: var(--radius-panel);
+    border: 1px solid var(--border-default);
+    background: var(--surface-card);
+    padding: var(--space-6);
+  }
+
+  .map {
+    position: relative;
+    height: 320px;
+    border-radius: var(--radius-card);
+    background: var(--brand-green-50);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: var(--radius-full);
+  }
+
+  .outer {
+    height: 260px;
+    width: 260px;
+    border: 2px dashed var(--brand-green-400);
+    background: rgba(212, 234, 219, 0.45);
+  }
+
+  .inner {
+    height: 160px;
+    width: 160px;
+    border: 1px dashed var(--brand-green-200);
+  }
+
+  .pin {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-1-5);
+  }
+
+  .pin span {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
+    color: var(--brand-green-800);
+  }
+
+  .scale {
+    position: absolute;
+    bottom: var(--space-4);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+  }
+
+  .towns {
+    margin: var(--space-5) 0 0;
+    text-align: center;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  .callout {
+    margin-top: var(--space-8);
+    border-radius: var(--radius-card);
+    border: 1px solid var(--border-tint);
+    background: var(--surface-card);
+    padding: var(--space-5) var(--space-6);
+    text-align: center;
+    color: var(--brand-green-800);
+  }
+
+  .callout a {
+    font-weight: var(--weight-semibold);
+    color: var(--brand-green-700);
+  }
+
+  @media (max-width: 640px) {
+    .panel {
+      padding: var(--space-4);
+    }
+
+    .map {
+      height: 260px;
+    }
+
+    .outer {
+      height: 200px;
+      width: 200px;
+    }
+
+    .inner {
+      height: 120px;
+      width: 120px;
+    }
+  }
+</style>

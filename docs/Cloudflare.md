@@ -1,140 +1,92 @@
-# Deploying Yew Tree Cleaning to Cloudflare Pages
+# Deploying Yew Tree Cleaning to Cloudflare
 
-Cloudflare Pages connects directly to your GitHub repository. Every push to `main` automatically builds and deploys your site. No CLI tools, adapters, or manual builds needed.
+The site is fully static — Astro prerenders every page into `dist/`, and Cloudflare
+serves those files directly. There is **no Worker script**, no server-side rendering,
+no environment variables and no secrets.
 
-## Prerequisites
+## One-time setup
 
-- A [Cloudflare account](https://dash.cloudflare.com/sign-up) (free tier is fine)
-- Your domain `yewtreecleaning.co.uk` added to Cloudflare (for custom domain — optional for initial setup)
-- Code pushed to GitHub at `BenDowswell/yewtreecleaning.co.uk`
+You need the Cloudflare account that owns the `yewtreecleaning` Worker, and Node 20+.
 
-## Step 1: Connect GitHub to Cloudflare Pages
+```bash
+npm install
+npx wrangler login
+```
 
-1. Log in to [Cloudflare Dashboard](https://dash.cloudflare.com/).
-2. Click **Workers & Pages** in the left sidebar.
-3. Click **Create** > **Pages** tab > **Connect to Git**.
-4. Authorise Cloudflare to access your GitHub account if prompted.
-5. Select the repository **BenDowswell/yewtreecleaning.co.uk**.
-6. Click **Begin setup**.
+`wrangler login` opens a browser to authorise the CLI. It only needs doing once
+per machine.
 
-## Step 2: Configure Build Settings
+## Deploying
 
-On the setup screen, enter:
+```bash
+npm run deploy
+```
+
+That runs `astro build` and then `wrangler deploy`. The whole thing takes a few
+seconds — there is nothing to compile server-side.
+
+To check what you're about to ship without deploying:
+
+```bash
+npm run build
+npx wrangler dev
+```
+
+`wrangler dev` serves `dist/` through the same assets runtime Cloudflare uses in
+production, including the 404 behaviour, on <http://localhost:8787>.
+
+## Configuration
+
+Everything lives in `wrangler.jsonc`:
+
+```jsonc
+{
+  "name": "yewtreecleaning",
+  "compatibility_date": "2026-08-21",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
+```
+
+- **No `main`** — there is no Worker script, so Cloudflare serves assets only.
+- **`not_found_handling: "404-page"`** — unknown paths return `dist/404.html`
+  with a real 404 status, rather than redirecting to the homepage.
+- **No `compatibility_flags`** — `nodejs_compat` was needed by the old Next.js
+  Worker and is not needed now.
+
+## Custom domain
+
+Point `yewtreecleaning.co.uk` at the Worker under **Workers & Pages →
+yewtreecleaning → Settings → Domains & Routes**. Because the domain is already on
+Cloudflare, adding a custom domain there creates the DNS record for you.
+
+The site URL is also hardcoded in two places, both of which need updating if the
+domain ever changes:
+
+- `astro.config.mjs` — `site:`, used for canonical URLs and the sitemap
+- `public/robots.txt` — the `Sitemap:` line
+
+## Deploying from GitHub instead
+
+If you would rather push to `main` and have Cloudflare build it, connect the repo
+under **Workers & Pages → Create → Connect to Git** and use:
 
 | Setting | Value |
 |---|---|
-| **Project name** | `yewtreecleaning` |
-| **Production branch** | `main` |
-| **Framework preset** | Next.js |
-| **Build command** | `npx @cloudflare/next-on-pages` |
-| **Build output directory** | `.vercel/output/static` |
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
 
-> Cloudflare installs `@cloudflare/next-on-pages` automatically during the build — you don't need to install it locally or add it to your package.json.
+No environment variables are required. Note that this and `npm run deploy` are two
+routes to the same Worker — pick one and stick with it, or a manual deploy will be
+overwritten by the next push.
 
-## Step 3: Set Environment Variables
+## What is not here
 
-Still on the setup screen, expand **Environment variables** and add:
-
-| Variable | Value |
-|---|---|
-| `NODE_VERSION` | `18` |
-| `NEXT_PUBLIC_SITE_URL` | `https://yewtreecleaning.co.uk` |
-
-`NODE_VERSION` is important — without it the build will fail because Cloudflare defaults to an older Node version.
-
-## Step 4: Deploy
-
-Click **Save and Deploy**. That's it.
-
-Cloudflare will clone your repo, install dependencies, build the site, and deploy it. The first build takes 2–5 minutes. When it finishes you'll get a live URL:
-
-```
-https://yewtreecleaning.pages.dev
-```
-
-Visit it to check everything works.
-
-## Step 5: Set Compatibility Flags
-
-After the first deployment, you need to enable one flag for the API routes to work:
-
-1. Go to your Pages project in the dashboard.
-2. Click **Settings** > **Functions** > **Compatibility flags**.
-3. Add `nodejs_compat` for both **Production** and **Preview**.
-4. Click **Save**.
-
-Then trigger a redeploy: go to **Deployments**, click the three dots on the latest deployment, and select **Retry deployment**.
-
-## Step 6: Connect Your Custom Domain
-
-1. In your Pages project, go to **Custom domains**.
-2. Click **Set up a custom domain**.
-3. Enter `yewtreecleaning.co.uk` and click **Continue**.
-4. If your domain is already on Cloudflare, the DNS record is added automatically. If not, add this record in your DNS settings:
-
-| Type | Name | Target |
-|---|---|---|
-| CNAME | `@` | `yewtreecleaning.pages.dev` |
-
-5. Repeat for `www`:
-
-| Type | Name | Target |
-|---|---|---|
-| CNAME | `www` | `yewtreecleaning.pages.dev` |
-
-Cloudflare provisions a free SSL certificate automatically. It usually activates within minutes.
-
-### Redirect www to the main domain
-
-1. Go to **Rules** > **Redirect Rules**.
-2. Create a rule:
-   - **When:** Hostname equals `www.yewtreecleaning.co.uk`
-   - **Then:** Redirect to `https://yewtreecleaning.co.uk` (dynamic, preserving the path)
-   - **Status code:** 301
-
-## How Automatic Deployments Work
-
-Once connected, every push to GitHub triggers a deployment:
-
-| Action | Result |
-|---|---|
-| Push to `main` | Production deployment at `yewtreecleaning.co.uk` |
-| Push to any other branch | Preview deployment at `<branch>.yewtreecleaning.pages.dev` |
-| Open a pull request | Preview URL posted as a comment on the PR |
-
-No CI/CD pipelines to configure. Cloudflare handles it all.
-
-## Optional: Performance Settings
-
-These are already good by default but worth checking:
-
-**Speed** > **Optimization:**
-- Auto Minify: JavaScript, CSS, HTML — enable all
-- Brotli compression — enable (usually on by default)
-- Early Hints — enable
-
-**Security** > **Settings:**
-- Bot Fight Mode — enable
-- Browser Integrity Check — enable
-
-## Important Note: Mock Database
-
-The current site uses an in-memory mock database for bookings, users, and messages. On Cloudflare Workers, this resets between requests since each request may run in a fresh isolate.
-
-**This is fine for now** — it lets you demo all the functionality. When you're ready to go live with real data, the mock database can be swapped for:
-
-- **Cloudflare D1** — Cloudflare's own serverless SQLite (simplest option, stays within Cloudflare)
-- **Supabase** — Managed PostgreSQL with a generous free tier
-- **Turso** — Edge-hosted SQLite, works well with Cloudflare Workers
-
-The API routes are already structured to make this swap straightforward — only `src/lib/mock-db.ts` needs replacing.
-
-## Troubleshooting
-
-**Build fails:** Check that `NODE_VERSION=18` is set in environment variables.
-
-**API routes return errors:** Make sure the `nodejs_compat` compatibility flag is set (Step 5 above).
-
-**Map tiles not loading:** If you've added a Content Security Policy, allow `https://*.tile.openstreetmap.org` and `https://unpkg.com`.
-
-**SSL not working on custom domain:** Allow up to 24 hours for the certificate to provision. Check that DNS records are correct and the proxy (orange cloud) is enabled.
+Earlier versions of this site ran on Next.js with API routes, a booking wizard and
+an admin area backed by an in-memory database. All of that has been removed. If
+online booking is ever wanted again it needs a real database — the previous
+implementation lost its data on every cold start.

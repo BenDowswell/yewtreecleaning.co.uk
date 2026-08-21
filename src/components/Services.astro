@@ -1,0 +1,147 @@
+---
+import Icon from './Icon.astro';
+import { services, icons, business } from '../data/site';
+---
+
+<section id="services">
+  <div class="container">
+    <div class="intro">
+      <h2 class="section-heading">Our Cleaning Services</h2>
+      <p>
+        Whether you need a regular weekly clean or a thorough one-off deep clean,
+        we offer a range of services to suit your home.
+      </p>
+    </div>
+
+    <div class="list">
+      {
+        services.map((service) => (
+          <div class="row">
+            <div class="glyph">
+              <Icon paths={icons[service.key] ?? []} size={28} />
+            </div>
+            <div class="body">
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+            </div>
+            <p class="meta">{service.meta}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="note">
+      All services from £{business.hourlyRate} per hour · Minimum {business.minimumHours} hours
+      · Please provide your own products and equipment
+    </p>
+  </div>
+</section>
+
+<style>
+  .intro {
+    max-width: 42rem;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro p {
+    margin: var(--space-4) 0 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  .list {
+    margin: var(--space-12) auto 0;
+    max-width: 52rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .row {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-5);
+    background: var(--surface-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--duration-base) var(--ease-default);
+  }
+
+  .row:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .glyph {
+    flex-shrink: 0;
+    height: 48px;
+    width: 48px;
+    border-radius: var(--radius-control);
+    background: var(--brand-green-50);
+    color: var(--brand-green-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: var(--text-lg);
+    font-weight: var(--weight-semibold);
+    color: var(--text-heading);
+  }
+
+  .body p {
+    margin: var(--space-1-5) 0 0;
+    font-size: 0.9375rem;
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  .meta {
+    margin: 0;
+    flex-shrink: 0;
+    padding-top: var(--space-1);
+    text-align: right;
+    font-size: 0.8125rem;
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+  }
+
+  .note {
+    margin: var(--space-10) 0 0;
+    text-align: center;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+  }
+
+  /* Below the small breakpoint the duration/price moves under the description
+     rather than being squeezed against the right edge. */
+  @media (max-width: 640px) {
+    .row {
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      padding: var(--space-5);
+    }
+
+    .body {
+      flex: 1 1 60%;
+    }
+
+    .meta {
+      flex-basis: 100%;
+      text-align: left;
+      padding-top: 0;
+      padding-left: calc(48px + var(--space-4));
+    }
+  }
+</style>

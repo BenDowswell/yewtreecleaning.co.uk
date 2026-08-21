@@ -1,0 +1,207 @@
+---
+import { business } from '../data/site';
+---
+
+<section id="top" class="hero">
+  <div class="inner">
+    <div class="copy">
+      <h1>Your Trusted Local Cleaner in <span>Madeley</span></h1>
+      <p class="lede">
+        Reliable, friendly domestic cleaning for homes across Madeley and the
+        surrounding area. From regular cleans to one-off deep cleans, we take the
+        hassle out of keeping your home spotless.
+      </p>
+      <div class="actions">
+        <a href="#contact" class="btn-primary">Book a Clean</a>
+        <a href="#contact" class="btn-outline">Get a Free Quote</a>
+      </div>
+      <p class="pricing">
+        From just £{business.hourlyRate} per hour · Minimum {business.minimumHours} hours
+      </p>
+    </div>
+
+    <div class="art-wrap">
+      <div class="art">
+        <svg viewBox="0 0 24 24" width="128" height="128" fill="none" stroke="var(--brand-green-400)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+          <path d="M9 22v-10h6v10"></path>
+        </svg>
+        <svg class="sparkle s1" viewBox="0 0 24 24" width="32" height="32" fill="var(--brand-green-300)" aria-hidden="true"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path></svg>
+        <svg class="sparkle s2" viewBox="0 0 24 24" width="24" height="24" fill="var(--brand-blue-300)" aria-hidden="true"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path></svg>
+        <svg class="sparkle s3" viewBox="0 0 24 24" width="20" height="20" fill="var(--brand-purple-300)" aria-hidden="true"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"></path></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(to bottom, var(--brand-green-50), var(--white));
+    overflow: hidden;
+  }
+
+  .inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-20) var(--space-8);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-16);
+    align-items: center;
+  }
+
+  .copy {
+    max-width: 36rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--text-6xl);
+    line-height: 1.05;
+    font-weight: var(--weight-bold);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-heading);
+  }
+
+  h1 span {
+    color: var(--brand-green-400);
+  }
+
+  .lede {
+    margin: var(--space-6) 0 0;
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--text-body);
+  }
+
+  .actions {
+    margin-top: var(--space-8);
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-control);
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    transition: background var(--duration-base) var(--ease-default);
+  }
+
+  .btn-primary {
+    background: var(--action-primary);
+    color: var(--text-on-brand);
+    padding: var(--space-3-5) var(--space-8);
+  }
+
+  .btn-primary:hover {
+    background: var(--action-primary-hover);
+    color: var(--text-on-brand);
+  }
+
+  .btn-outline {
+    border: 2px solid var(--border-brand);
+    color: var(--brand-green-700);
+    padding: var(--space-3) 30px;
+  }
+
+  .btn-outline:hover {
+    background: var(--brand-green-50);
+    color: var(--brand-green-700);
+  }
+
+  .pricing {
+    margin: var(--space-5) 0 0;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--text-muted);
+  }
+
+  .art-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .art {
+    position: relative;
+    height: 384px;
+    width: 384px;
+    max-width: 100%;
+    border-radius: var(--radius-panel);
+    background: rgba(212, 234, 219, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sparkle {
+    position: absolute;
+  }
+
+  .s1 {
+    right: var(--space-8);
+    top: var(--space-12);
+  }
+
+  .s2 {
+    left: var(--space-10);
+    bottom: var(--space-16);
+  }
+
+  .s3 {
+    right: var(--space-16);
+    bottom: var(--space-24);
+  }
+
+  @media (max-width: 1024px) {
+    .inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-12);
+      padding: var(--space-16) var(--space-8);
+    }
+
+    .copy {
+      max-width: none;
+    }
+
+    .art {
+      height: 300px;
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .inner {
+      padding: var(--space-12) var(--space-5);
+    }
+
+    h1 {
+      font-size: var(--text-4xl);
+      line-height: var(--text-4xl-lh);
+    }
+
+    .lede {
+      font-size: var(--text-base);
+    }
+
+    .btn-primary,
+    .btn-outline {
+      font-size: var(--text-base);
+      flex: 1 1 auto;
+    }
+
+    .art {
+      height: 240px;
+      width: 240px;
+    }
+
+    .art > svg:first-child {
+      width: 96px;
+      height: 96px;
+    }
+  }
+</style>

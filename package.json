@@ -1,39 +1,27 @@
 {
   "name": "yewtreecleaning",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "start": "next start",
-    "lint": "next lint",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "deploy": "astro build && wrangler deploy"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.2",
-    "@opennextjs/cloudflare": "^1.18.0",
-    "@types/node": "^25.5.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "leaflet": "^1.9.4",
-    "next": "^16.2.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-hook-form": "^7.72.0",
-    "react-leaflet": "^5.0.0",
-    "typescript": "^6.0.2",
-    "zod": "^4.3.6"
+    "astro": "^7.2.4",
+    "@astrojs/sitemap": "^3.7.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.2.2",
-    "@types/leaflet": "^1.9.21",
-    "eslint": "^9.39.4",
-    "eslint-config-next": "^16.2.1",
-    "postcss": "^8.5.8",
-    "tailwindcss": "^4.2.2",
-    "wrangler": "^4.78.0"
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.2",
+    "wrangler": "^4.125.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "esbuild@0.28.1": true,
+    "workerd@1.20260820.1": true
   }
 }

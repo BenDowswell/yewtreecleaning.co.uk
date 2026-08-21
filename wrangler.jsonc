@@ -1,23 +1,13 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
   "name": "yewtreecleaning",
-  "compatibility_date": "2025-09-27",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_date": "2026-08-21",
+  // Static assets only — there is no Worker script. The site is fully
+  // prerendered by Astro into dist/, so no `main`, no nodejs_compat, and no
+  // bindings are needed.
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS"
-  },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "yewtreecleaning"
-    }
-  ],
-  "images": {
-    "binding": "IMAGES"
+    "directory": "./dist",
+    "not_found_handling": "404-page"
   },
   "observability": {
     "enabled": true

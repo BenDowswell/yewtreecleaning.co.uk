@@ -11,12 +11,9 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
-/build
+# astro
+dist/
+.astro/
 
 # misc
 .DS_Store
@@ -32,23 +29,15 @@ yarn-error.log*
 .env*.local
 .env
 
-# vercel
-.vercel
-
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # claude code config
 .claude/
 .claude-flow/
 .mcp.json
 
-# OpenNext
-.open-next
-
 # wrangler files
 .wrangler
 .dev.vars*
 !.dev.vars.example
-!.env.example
