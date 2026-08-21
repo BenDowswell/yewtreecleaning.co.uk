@@ -96,7 +96,11 @@ export default function StepConfirm() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit booking request. Please try again.');
+        const errorBody = await response.json().catch(() => null);
+        throw new Error(
+          errorBody?.message ||
+            'Failed to submit booking request. Please try again.',
+        );
       }
 
       dispatch({ type: 'SET_SUBMITTED' });

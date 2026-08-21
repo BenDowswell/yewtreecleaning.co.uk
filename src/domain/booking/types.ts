@@ -12,6 +12,7 @@ export interface Booking {
   serviceName: string;
   date: string;
   startTime: string;
+  frequency?: BookingFrequency;
   estimatedHours: number;
   address: {
     line1: string;
