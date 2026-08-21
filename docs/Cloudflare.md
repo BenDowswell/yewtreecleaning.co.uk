@@ -59,14 +59,22 @@ Everything lives in `wrangler.jsonc`:
 
 ## Custom domain
 
-Point `yewtreecleaning.co.uk` at the Worker under **Workers & Pages →
-yewtreecleaning → Settings → Domains & Routes**. Because the domain is already on
-Cloudflare, adding a custom domain there creates the DNS record for you.
+The live domain is **yewtreecleaning.co.uk**, declared in `wrangler.jsonc`:
 
-The site URL is also hardcoded in two places, both of which need updating if the
-domain ever changes:
+```jsonc
+"routes": [
+  { "pattern": "yewtreecleaning.co.uk", "custom_domain": true }
+]
+```
 
-- `astro.config.mjs` — `site:`, used for canonical URLs and the sitemap
+`wrangler deploy` provisions the custom domain and creates its DNS record, so
+there is no dashboard step. The first deploy takes a minute or two longer while
+the certificate is issued.
+
+If the domain ever changes, three places need updating together:
+
+- `wrangler.jsonc` — the `routes` pattern
+- `astro.config.mjs` — `site:`, which drives canonical URLs and the sitemap
 - `public/robots.txt` — the `Sitemap:` line
 
 ## Deploying from GitHub instead
