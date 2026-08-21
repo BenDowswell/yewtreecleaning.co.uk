@@ -92,7 +92,6 @@ export default function StepConfirm() {
           address: state.address,
           postcode: state.postcode,
           notes: state.notes,
-          ecoProducts: state.ecoProducts,
         }),
       });
 
@@ -206,11 +205,6 @@ export default function StepConfirm() {
               onEdit={() => goToStep(2)}
             />
           )}
-          <SummaryRow
-            label="Eco-friendly products"
-            value={state.ecoProducts ? 'Yes' : 'No'}
-            onEdit={() => goToStep(2)}
-          />
         </div>
       </div>
 

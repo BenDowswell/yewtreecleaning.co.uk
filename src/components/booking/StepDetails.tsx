@@ -17,7 +17,6 @@ const detailsSchema = z.object({
     .min(5, 'Please enter your full property address'),
   postcode: z.string().min(5, 'Please enter a valid postcode'),
   notes: z.string(),
-  ecoProducts: z.boolean(),
 });
 
 type DetailsFormData = z.infer<typeof detailsSchema>;
@@ -43,7 +42,6 @@ export default function StepDetails() {
       address: state.address,
       postcode: state.postcode,
       notes: state.notes,
-      ecoProducts: state.ecoProducts,
     },
   });
 
@@ -57,7 +55,6 @@ export default function StepDetails() {
         address: data.address,
         postcode: data.postcode,
         notes: data.notes ?? '',
-        ecoProducts: data.ecoProducts ?? false,
       },
     });
     dispatch({ type: 'NEXT_STEP' });
@@ -194,19 +191,6 @@ export default function StepDetails() {
             {...register('notes')}
             className={inputClasses}
           />
-        </div>
-
-        {/* Eco products */}
-        <div className="flex items-start gap-3">
-          <input
-            id="ecoProducts"
-            type="checkbox"
-            {...register('ecoProducts')}
-            className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-green-400 focus:ring-brand-green-400"
-          />
-          <label htmlFor="ecoProducts" className="text-sm text-gray-700">
-            I&apos;d prefer eco-friendly cleaning products
-          </label>
         </div>
 
         {/* Navigation */}

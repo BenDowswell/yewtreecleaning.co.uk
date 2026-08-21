@@ -65,8 +65,9 @@ export default function AboutPage() {
             <p className="mt-4 leading-relaxed text-gray-600">
               Booking is straightforward. You choose your service, pick a
               preferred date and time, and we&rsquo;ll confirm your appointment.
-              We bring all cleaning products and equipment &mdash; and if
-              you&rsquo;d prefer eco-friendly products, just let us know.
+              We ask that you have your usual cleaning products and equipment
+              available in the home, so we can use what you already trust on
+              your surfaces.
             </p>
             <p className="mt-4 leading-relaxed text-gray-600">
               We charge a simple, honest rate of &pound;15 per hour with a

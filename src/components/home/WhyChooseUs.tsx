@@ -65,9 +65,9 @@ const reasons = [
     ),
   },
   {
-    title: 'Everything Provided',
+    title: 'Your Products, Your Home',
     description:
-      'We bring all cleaning products and equipment. Eco-friendly products available on request.',
+      'We use the cleaning products and equipment you already keep at home, so nothing unfamiliar touches your surfaces.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

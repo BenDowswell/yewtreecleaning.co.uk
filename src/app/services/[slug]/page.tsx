@@ -196,8 +196,8 @@ export default async function ServiceDetailPage({
                   />
                 </svg>
                 <span>
-                  All cleaning products and equipment provided. Eco-friendly
-                  products available on request.
+                  Please have your own cleaning products and equipment
+                  available in the home.
                 </span>
               </li>
               <li className="flex items-start gap-3">

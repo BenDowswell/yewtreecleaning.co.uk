@@ -16,7 +16,6 @@ interface BookingState {
   address: string;
   postcode: string;
   notes: string;
-  ecoProducts: boolean;
   isSubmitted: boolean;
   isSubmitting: boolean;
 }
@@ -24,7 +23,7 @@ interface BookingState {
 type BookingAction =
   | { type: 'SET_SERVICE'; payload: { serviceId: string } }
   | { type: 'SET_DATETIME'; payload: { preferredDate: string; preferredTime: string; frequency: BookingFrequency; estimatedHours: number } }
-  | { type: 'SET_DETAILS'; payload: { customerName: string; email: string; phone: string; address: string; postcode: string; notes: string; ecoProducts: boolean } }
+  | { type: 'SET_DETAILS'; payload: { customerName: string; email: string; phone: string; address: string; postcode: string; notes: string } }
   | { type: 'NEXT_STEP' }
   | { type: 'PREV_STEP' }
   | { type: 'GO_TO_STEP'; payload: number }
@@ -45,7 +44,6 @@ const initialState: BookingState = {
   address: '',
   postcode: '',
   notes: '',
-  ecoProducts: false,
   isSubmitted: false,
   isSubmitting: false,
 };

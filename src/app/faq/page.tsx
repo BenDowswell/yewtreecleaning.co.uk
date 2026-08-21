@@ -21,7 +21,7 @@ const FAQ_ITEMS = [
   {
     question: 'Do I need to provide cleaning products?',
     answer:
-      'No \u2014 we bring all cleaning products and equipment with us. If you\u2019d prefer us to use eco-friendly products, just let us know when you book.',
+      'Yes \u2014 please have your usual cleaning products and equipment available in the home. This keeps your costs down and means we use the products you already trust on your surfaces.',
   },
   {
     question: 'How do I book a clean?',

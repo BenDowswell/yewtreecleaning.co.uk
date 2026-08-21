@@ -30,9 +30,8 @@ export default function ServicesPage() {
             </h1>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
               From regular housekeeping to specialist one-off cleans, we offer a
-              full range of domestic cleaning services. All services include
-              cleaning products and equipment &mdash; just let us know if
-              you&rsquo;d prefer eco-friendly products.
+              full range of domestic cleaning services. Please have your own
+              cleaning products and equipment available in the home.
             </p>
           </div>
         </div>
@@ -103,7 +102,7 @@ export default function ServicesPage() {
           {/* Bottom note */}
           <p className="mt-12 text-center text-sm font-medium text-gray-500">
             All services from &pound;15 per hour &middot; Minimum 2 hours
-            &middot; Products and equipment provided
+            &middot; Please provide your own products and equipment
           </p>
         </div>
       </section>
