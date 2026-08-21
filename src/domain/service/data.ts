@@ -103,13 +103,12 @@ export const services: Service[] = [
     shortDescription:
       'Restore your oven to its best with a detailed professional clean.',
     longDescription:
-      'A grimy oven is not only unpleasant but can affect the taste of your food and even pose a fire risk. Our oven cleaning service dismantles removable parts and thoroughly cleans every surface, including racks, trays, the door glass, and the interior. Your oven will look and perform like new.',
+      'A grimy oven is not only unpleasant but can affect the taste of your food and even pose a fire risk. Our oven cleaning service thoroughly cleans every surface, including racks, trays, the door glass, and the interior. Your oven will look and perform like new.',
     pricePerHour: 15,
     minimumHours: 2,
     estimatedDuration: '1\u20132 hours',
     icon: 'flame',
     features: [
-      'Full disassembly and cleaning of removable parts',
       'Interior, door glass, and seal cleaning',
       'Hob and extractor hood cleaning available',
     ],
@@ -130,7 +129,6 @@ export const services: Service[] = [
       'Removal of construction dust and plaster residue',
       'Window, frame, and sill cleaning',
       'Floor scrubbing and surface polishing',
-      'Disposal of leftover packaging and debris',
     ],
   },
 ];
